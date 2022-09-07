@@ -1,4 +1,4 @@
-package com.raiseup.smrs.springmvcrestservices.web.controller;
+package com.raiseup.smrs.springmvcrestservices.web.controller.v2;
 
 import com.raiseup.smrs.springmvcrestservices.service.BeerService;
 import com.raiseup.smrs.springmvcrestservices.web.model.BeerDto;
@@ -12,9 +12,9 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@RequestMapping("/api/v1/beer")
+@RequestMapping("/api/v2/beer")
 @RequiredArgsConstructor
-public class BeerController {
+public class BeerControllerV2 {
 
     private final BeerService beerService;
 
