@@ -10,6 +10,7 @@ import java.time.OffsetDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@ToString
 public class BeerDto {
 
     private Long id;

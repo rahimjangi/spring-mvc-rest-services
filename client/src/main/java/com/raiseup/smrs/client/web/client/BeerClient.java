@@ -23,6 +23,12 @@ public class BeerClient {
                 .getForObject(apihost+BEER_PATH_V1+id.toString(),BeerDto.class);
     }
 
+    public BeerDto saveBeer(BeerDto beerDto){
+        return restTemplate
+                .postForObject(apihost+BEER_PATH_V1,beerDto,BeerDto.class);
+
+    }
+
     public void setApihost(String apihost) {
         this.apihost = apihost;
     }
