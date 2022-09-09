@@ -3,6 +3,7 @@ package com.raiseup.smrs.api.service;
 import com.raiseup.smrs.api.repository.BeerRepository;
 import com.raiseup.smrs.api.web.model.BeerDto;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.OffsetDateTime;
@@ -11,6 +12,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class BeerServiceImpl implements BeerService {
 
     private final BeerRepository beerRepository;
@@ -43,5 +45,11 @@ public class BeerServiceImpl implements BeerService {
             return beerRepository.save(beer);
         }
 
+    }
+
+    @Override
+    public void deleteBeerById(Long beerId) {
+        beerRepository.deleteById(beerId);
+        log.info("Beer with id {} deleted",beerId);
     }
 }

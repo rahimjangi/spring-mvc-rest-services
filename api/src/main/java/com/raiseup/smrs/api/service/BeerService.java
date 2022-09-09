@@ -14,4 +14,6 @@ public interface BeerService {
     List<BeerDto> findAll();
 
     BeerDto update(Long beerId, BeerDto beerDto);
+
+    void deleteBeerById(Long beerId);
 }
