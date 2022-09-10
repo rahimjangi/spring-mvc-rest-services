@@ -5,7 +5,6 @@ import com.raiseup.smrs.client.model.BeerDto;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
@@ -13,7 +12,7 @@ import java.time.OffsetDateTime;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-@SpringBootTest
+//@SpringBootTest
 @Slf4j
 class BeerClientTest {
     @Autowired
@@ -36,11 +35,11 @@ class BeerClientTest {
     @Test
     void saveBeerDto(){
         BeerDto rahimBeer = BeerDto.builder()
-                .beerName("rahim")
+                .beerName("rahim1")
                 .version(1)
                 .beerStyle(BearStyleEnum.LAGER)
                 .createDate(OffsetDateTime.now())
-                .upc(23469867L)
+                .upc(2346943867L)
                 .price(BigDecimal.valueOf(34.43)).build();
         BeerDto beerDto = beerClient.saveBeer(rahimBeer);
 
@@ -51,11 +50,11 @@ class BeerClientTest {
     @Test
     void updateBeerDto(){
         BeerDto rahimBeer = BeerDto.builder()
-                .beerName("rahim")
+                .beerName("rahim2")
                 .version(1)
                 .beerStyle(BearStyleEnum.LAGER)
                 .createDate(OffsetDateTime.now())
-                .upc(23469867L)
+                .upc(234569867L)
                 .price(BigDecimal.valueOf(34.43)).build();
         BeerDto beerDto = beerClient.saveBeer(rahimBeer);
         beerDto.setUpc(324L);
@@ -68,11 +67,11 @@ class BeerClientTest {
     @Test
     void canDeleteBeerDto(){
         BeerDto rahimBeer = BeerDto.builder()
-                .beerName("rahim")
+                .beerName("rahim3")
                 .version(1)
                 .beerStyle(BearStyleEnum.LAGER)
                 .createDate(OffsetDateTime.now())
-                .upc(23469867L)
+                .upc(234692867L)
                 .price(BigDecimal.valueOf(34.43)).build();
         BeerDto beerDto = beerClient.saveBeer(rahimBeer);
         log.info("Beer ID: {}",beerDto.getId());
