@@ -1,5 +1,6 @@
 package com.raiseup.smrs.client.web.client;
 
+import com.raiseup.smrs.client.model.BearStyleEnum;
 import com.raiseup.smrs.client.model.BeerDto;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -7,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.math.BigDecimal;
+import java.time.OffsetDateTime;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
 @Slf4j
@@ -18,13 +21,27 @@ class BeerClientTest {
 
     @Test
     void getById(){
-        BeerDto beer = beerClient.getBeerById(1L);
+        BeerDto rahimBeer = BeerDto.builder()
+                .beerName("rahim")
+                .version(1)
+                .createDate(OffsetDateTime.now())
+                .beerStyle(BearStyleEnum.LAGER)
+                .upc(23469867L)
+                .price(BigDecimal.valueOf(34.43)).build();
+        BeerDto beerDto = beerClient.saveBeer(rahimBeer);
+        BeerDto beer = beerClient.getBeerById(beerDto.getId());
         assertNotNull(beer);
     }
 
     @Test
     void saveBeerDto(){
-        BeerDto rahimBeer = BeerDto.builder().beerName("rahim").price(BigDecimal.valueOf(34.43)).build();
+        BeerDto rahimBeer = BeerDto.builder()
+                .beerName("rahim")
+                .version(1)
+                .beerStyle(BearStyleEnum.LAGER)
+                .createDate(OffsetDateTime.now())
+                .upc(23469867L)
+                .price(BigDecimal.valueOf(34.43)).build();
         BeerDto beerDto = beerClient.saveBeer(rahimBeer);
 
         assertNotNull(rahimBeer);
@@ -33,7 +50,13 @@ class BeerClientTest {
 
     @Test
     void updateBeerDto(){
-        BeerDto rahimBeer = BeerDto.builder().beerName("rahim").price(BigDecimal.valueOf(34.43)).build();
+        BeerDto rahimBeer = BeerDto.builder()
+                .beerName("rahim")
+                .version(1)
+                .beerStyle(BearStyleEnum.LAGER)
+                .createDate(OffsetDateTime.now())
+                .upc(23469867L)
+                .price(BigDecimal.valueOf(34.43)).build();
         BeerDto beerDto = beerClient.saveBeer(rahimBeer);
         beerDto.setUpc(324L);
         beerDto.setVersion(32);
@@ -44,7 +67,13 @@ class BeerClientTest {
 
     @Test
     void canDeleteBeerDto(){
-        BeerDto rahimBeer = BeerDto.builder().beerName("rahim").price(BigDecimal.valueOf(34.43)).build();
+        BeerDto rahimBeer = BeerDto.builder()
+                .beerName("rahim")
+                .version(1)
+                .beerStyle(BearStyleEnum.LAGER)
+                .createDate(OffsetDateTime.now())
+                .upc(23469867L)
+                .price(BigDecimal.valueOf(34.43)).build();
         BeerDto beerDto = beerClient.saveBeer(rahimBeer);
         log.info("Beer ID: {}",beerDto.getId());
         beerClient.deleteBeer(beerDto.getId());

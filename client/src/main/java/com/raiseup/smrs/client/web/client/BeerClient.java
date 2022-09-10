@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 @Component
-@ConfigurationProperties(value = "com.raiseup.smrs",ignoreUnknownFields = false)
+@ConfigurationProperties(value = "com.raiseup.smrs")
 @Slf4j
 public class BeerClient {
 

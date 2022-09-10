@@ -1,9 +1,11 @@
 package com.raiseup.smrs.api.web.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.validator.constraints.Length;
+
+import javax.persistence.*;
+import javax.validation.constraints.Positive;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 
@@ -13,17 +15,23 @@ public class BeerDto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @Version
     private Integer version;
+    @CreationTimestamp
+    @Column(updatable = false)
     private OffsetDateTime createDate;
+    @UpdateTimestamp
     private OffsetDateTime lastModifiedDate;
+    @Column(length = 50,nullable = false)
+    @Length(min = 3,max = 20,message = "Min = 3 and Max=20")
     private String beerName;
     private BearStyleEnum beerStyle;
+    @Column(unique = true)
+    @Positive
     private Long upc;
     private BigDecimal price;
 
     public BeerDto() {
-        System.out.println("cons----------------------------------");
     }
 
     public BeerDto(Integer version, OffsetDateTime createDate, OffsetDateTime lastModifiedDate, String beerName, BearStyleEnum beerStyle, Long upc, BigDecimal price) {

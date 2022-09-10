@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping({"/api/v1/beer"})
 @RequiredArgsConstructor
@@ -22,12 +24,12 @@ public class BeerController {
     }
 
     @PostMapping
-    public ResponseEntity<BeerDto>saveNewBeer(@RequestBody BeerDto beerDto){
+    public ResponseEntity<BeerDto>saveNewBeer(@Valid @RequestBody BeerDto beerDto){
         return new ResponseEntity<>(beerService.create(beerDto),HttpStatus.CREATED);
     }
 
     @PutMapping({"/{beerId}"})
-    public ResponseEntity<BeerDto>updateBeer(@RequestBody BeerDto beerDto,@PathVariable Long beerId){
+    public ResponseEntity<BeerDto>updateBeer(@Valid @RequestBody BeerDto beerDto,@PathVariable Long beerId){
         return new ResponseEntity<>(beerService.update(beerId,beerDto),HttpStatus.NO_CONTENT);
     }
 
@@ -36,5 +38,7 @@ public class BeerController {
         beerService.deleteBeerById(beerId);
         log.info("inside deleteBeer: {}",beerId);
     }
+
+
 
 }
